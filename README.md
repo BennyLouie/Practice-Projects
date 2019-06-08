@@ -1,2 +1,2 @@
-# Practice-Projects
+# Practice-Projects-Python
 Projects used to Practice Coding
