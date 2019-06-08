@@ -1,0 +1,171 @@
+
+import random
+
+money = 100
+
+
+num = random.randint(1,10)
+
+#Write your game of chance functions here
+
+def dice_roll(guess, bet):
+  roll = random.randint(1,6)
+  if bet <= 0:
+    print("Your bet cannot be nothing.")
+    return 0
+  if bet > money:
+    print("You cannot bet more than what you have.")
+    return 0
+  if guess == roll:
+    print("You rolled a " + str(roll) + ".")
+    print("You win the game!")
+    print("You've won " + str(bet) + " dollars.")
+    return bet
+  elif guess != roll:
+    print("You have lost the game!")
+    print("You rolled a " + str(roll) + ".")
+    print("You've lost " + str(bet) + " dollars.")
+    return -bet
+  else:
+    print("Your cannot guess beyond the scope of the dice.")
+    return 0
+  
+  
+  
+def coin_toss(guess, bet):
+  result = random.randint(1,2)
+  if bet <= 0:
+    print("Your bet cannot be nothing.")
+    return 0
+  if bet > money:
+    print("You cannot bet more than what you have.")
+    return 0
+  if result == 1:
+    print("Heads!")
+  elif result ==2:
+    print("Tails!")
+  if ((guess == "Heads" or guess == "Head" or guess == "heads" or guess == "Heads!") and (result == 1)) or ((guess == "Tails" or guess == "tails" or guess == "Tails!" or guess == "tails!") and (result == 2)) :
+    print("You've won the game!")
+    print("You've won " + str(bet) + " dollars.")
+    return bet
+  elif ((guess == "Heads" or guess == "Heads!" or guess == "heads" or guess == "heads!") and (result == 2)) or ((guess == "Tails" or guess == "tails" or guess == "Tails!" or guess == "tails!") and (result == 1)):
+    print("You've lost the game!")
+    print("You've lost " + str(bet) + " dollars.")
+    return -bet
+  else:
+    print("Your cannot guess beyond the scope.")
+    return 0
+  
+
+
+def cho_han(guess, bet):
+  die1 = random.randint(1,6)
+  die2 = random.randint(1,6)
+  sum = die1 + die2
+  even = sum%2 == 0
+  odd = sum%2 != 0
+  result = even or odd
+  if bet <= 0:
+    print("You cannot bet nothing.")
+    return 0
+  if bet > money:
+    print("You cannot bet more than what you have.")
+    return 0
+  if (guess == "Even" or guess == "even" or guess == "Evens" or guess == "evens" and result == even) or (guess == "Odd" or guess == "odd" or guess == "Odds" or guess == "odds" and result == odd):
+    print("You've guessed correctly!")
+    print("You've won " + str(bet) + " dollars.")
+    return bet
+  elif (guess == "Even" or guess == "even" or guess == "Evens" or guess == "evens" and result == odd or (guess == "Odd" or guess == "odd" or guess == "Odds" or guess == "odds") and result == even):
+    print("You've guessed incorrectly.")
+    print("You've lost " + str(bet) + " dollars.")
+    return -bet
+  else:
+    print("You cannot guess beyond the scope.")
+    return 0
+  
+
+  
+def card_game(bet):
+  mine = random.randint(1,13)
+  theirs = random.randint(1,13)
+  if bet <= 0:
+    print("You cannot bet nothing.")
+    return 0
+  if bet > money:
+    print("You cannot bet more than what you have.")
+    return 0
+  if mine > theirs:
+    print("Your card was " + str(theirs) + ".")
+    print("My card was " + str(mine) + ".")
+    print("My card is higher. I win " + str(bet) + " dollars.")
+    return bet
+  elif theirs > mine:
+    print("Your card was " + str(theirs) + ".")
+    print("My card was " + str(mine) + ".")
+    print("Your card is higher. I lose " + str(bet) + " dollars.")
+    return -bet
+  elif mine == theirs:
+    print("Your card was " + str(theirs) + ".")
+    print("My card was " + str(mine) + ".")
+    print("It's a tie!")
+    print("The money is returned to the both of us.")
+    return 0
+  
+  
+  
+def roulette_game(guess, bet):
+  result = random.randint(0,37)
+  jackpot = bet*35
+  "Even" == "even" == "even." == "Even." == "Evens"
+  "Evens" == "evens" == "Evens." == "evens." 
+  "Odd" == "odd" == "Odds" == "odds" == "Odd." == "odd." == " odd" == " Odd"
+  if bet <= 0:
+    print("You cannot bet nothing.")
+    return 0
+  if bet > money:
+    print("You cannot bet more than what you have.")
+    return 0
+  if guess < 0 and guess >= 37 and guess != "Odd" and guess != "Even":
+    print("You cannot guess beyond the scope.")
+    return 0
+  elif guess == result:
+    print("The wheel landed on " + str(result) + ".")
+    print("Jackpot! You've guessed the correct number!")
+    print("Player wins " + str(jackpot) + " dollars.")
+    return jackpot
+  elif guess == "Even" and result%2 == 0 and result != 0 and result != 37:
+    print("The wheel landed on " + str(result) + ".")
+    print("You've guessed correctly!")
+    print("Player has won " + str(bet) + " dollars.")
+    return bet
+  elif guess == "Odd" and result%2 != 0 and result != 0 and result != 37:
+    print("The wheel landed on " + str(result) + ".")
+    print("You've guessed correctly!")
+    print("Player has won " + str(bet) + " dollars.")
+    return bet
+  else:
+    print("The wheel landed on " + str(result) + ".")
+    print("Player has lost.")
+    print("Player loses " + str(bet) + " dollars.")
+    return -bet
+ 
+
+
+    
+  
+#Call your game of chance functions here
+print("Dice Game!")
+money += dice_roll(2, 10)
+print("You have " + str(money) + " dollars left.")
+print("Coin Toss!")
+money += coin_toss("heads", 25)
+print("You have " + str(money) + " dollars left.")
+print("Cho Han!")
+money += cho_han("evens", 25)
+print("You have " + str(money) + " dollars left.")
+print("Card Game!")
+money += card_game(50)
+print("You have " + str(money) + " dollars left.")
+print("Roulette Time!")
+money += roulette_game(6, 25)
+print("You have " + str(money) + " dollars left.")
